@@ -1,0 +1,96 @@
+<h1 id="tableLabel">Game Loans</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<form [formGroup]="formulario">
+  <table class='table table-striped' aria-labelledby="tableLabel">
+    <tbody>
+      <tr>
+        <div>
+          <label for="LoanDateBegin">
+            Loan Date:
+          </label>
+      <tr><input id="LoanDateBegin" type="date" formControlName="LoanDateBegin"></tr>
+      </div>
+      </tr>
+      <br />
+      <tr>
+        <div>
+          <label for="IdFriend">Friend Name</label>
+      <tr>
+        <select formControlName="IdFriend" id="IdFriend" [multiple]="false">
+          <option *ngFor="let friend of friends" [ngValue]="friend.id">
+            {{ friend.id + (friend.id != "" ? " - " : "") + friend.fullName }}
+          </option>
+        </select>
+      </tr>
+      </div>
+      </tr>
+      <br />
+      <tr>
+        <div>
+          <label for="IdGame">Full Game Name</label>
+      <tr>
+        <select formControlName="IdGame" id="IdGame" [multiple]="true">
+          <option *ngFor="let game of games" [ngValue]="game.id">
+            {{ game.id + (game.id != "" ? " - " : "") + game.fullGameName }}
+          </option>
+        </select>
+      </tr>
+      </div>
+      </tr>
+      <br />
+      <tr>
+        <p>
+          <button class="btn btn-primary" type="submit" (click)="saveData()">Save Data</button>
+        </p>
+      </tr>
+
+    </tbody>
+
+  </table>
+</form>
+<tr></tr>
+
+<p *ngIf="!loans"><em>Loading...</em></p>
+
+<form [formGroup]="formulario">
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="loans">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Full Game Name</th>
+        <th>Friend Name</th>
+        <th>Loan Date Begin</th>
+        <th>Loan Date End</th>
+        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let loan of loans">
+        <td>{{ loan.id }}</td>
+        <td>{{ loan.game }}</td>
+        <td>{{ loan.friend }}</td>
+        <td>{{ loan.loanDateBegin }}</td>
+        <td>
+          <input type="date" formControlName="LoanDateEnd">
+        </td>
+        <td>
+          <button type="submit" class="btn btn-success btn-sm" (click)="renewLoans(loan.id)">
+            Renew Loan
+          </button> &nbsp;
+          <button type="submit" class="btn btn-primary btn-sm" (click)="updateLoans(loan.id)">
+            Return Loan
+          </button> &nbsp;
+          <button type="submit" class="btn btn-danger btn-sm" (click)="deleteLoans(loan.id)">
+            Delete Loan
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </form>
+
+
+
+

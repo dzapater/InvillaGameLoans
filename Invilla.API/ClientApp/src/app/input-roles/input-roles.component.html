@@ -1,0 +1,67 @@
+<form [formGroup]="formulario">
+  <table class='table table-striped' aria-labelledby="tableLabel">
+    <tbody>
+      <tr>
+        <div>
+          <label for="RegistrationDate">
+            Registration Date:
+          </label>
+      <tr><input id="name" type="date" formControlName="RegistrationDate"></tr>
+      </div>
+      </tr>
+
+      <tr>
+        <div>
+          <label for="Role">
+            Full Name:
+          </label>
+      <tr><input id="Role" type="text" formControlName="Role"> </tr>
+      </div>
+      </tr>
+
+      <br />
+      <tr>
+        <p>
+          <button class="btn btn-primary" type="submit" (click)="saveData()">Save Data</button>
+        </p>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</form>
+
+
+<p *ngIf="!roles"><em>Loading...</em></p>
+
+<form [formGroup]="formulario">
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="roles">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Role</th>
+        <th>RegistrationDate</th>
+        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let role of roles">
+        <td>{{ role.id }}</td>
+        <td>{{ role.role }}</td>
+        <td>{{ role.registrationDate }}</td>
+        <td>
+          <button type="submit" class="btn btn-primary btn-sm" (click)="updateRole(role.id)">
+            Update Role
+          </button> &nbsp;
+          <button type="submit" class="btn btn-danger btn-sm" (click)="deleteRole(role.id)">
+            Delete Role
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+
+
+

@@ -1,0 +1,76 @@
+<form [formGroup]="formulario">
+  <table class='table table-striped' aria-labelledby="tableLabel">
+    <tbody>
+      <tr>
+        <div>
+          <label for="RegistrationDate">
+            Registration Date:
+          </label>
+      <tr><input id="name" type="date" formControlName="RegistrationDate"></tr>
+      </div>
+      </tr>
+
+      <tr>
+        <div>
+          <label for="FullName">
+            Full Name:
+          </label>
+      <tr><input id="FullName" type="text" formControlName="FullName"> </tr>
+      </div>
+      </tr>
+
+      <tr>
+        <div>
+          <label for="Age">
+            Age:
+          </label>
+      <tr><input id="Age" type="text" formControlName="Age"></tr>
+      </div>
+      </tr>
+
+      <br />
+      <tr>
+        <p>
+          <button class="btn btn-primary" type="submit" (click)="saveData()">Save Data</button>
+        </p>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</form>
+
+
+<p *ngIf="!friends"><em>Loading...</em></p>
+
+<form [formGroup]="formulario">
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="friends">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>FullName</th>
+        <th>Age</th>
+        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let friend of friends">
+        <td>{{ friend.id }}</td>
+        <td>{{ friend.fullName }}</td>
+        <td>{{ friend.age }}</td>
+        <td>
+          <button type="submit" class="btn btn-primary btn-sm" (click)="updateFriend(friend.id)">
+            Update Friend
+          </button> &nbsp;
+          <button type="submit" class="btn btn-danger btn-sm" (click)="deleteFriend(friend.id)">
+            Delete Friend
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+
+
+
