@@ -22,6 +22,7 @@
   - Angular front-end;
     - Basic requisitions with bootstrap faceless;
     - Make tests with Bearer and debug more easily;
+    - If any trouble on the creation of the tables, please execute update-database;
 
 
 # Running DockerImage
